@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>首页_小叶子个人博客 - 一个站在web前端设计之路的女技术员个人博客网站</title>
+<meta name="keywords" content="个人博客,杨青个人博客,个人博客模板,杨青" />
+<meta name="description" content="杨青个人博客，是一个站在web前端设计之路的女程序员个人网站，提供个人博客模板免费资源下载的个人原创网站。" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="/static/web/css/base.css" rel="stylesheet">
+<link href="/static/web/css/about.css" rel="stylesheet">
+<link href="/static/web/css/m.css" rel="stylesheet">
+<script src="/static/web/js/jquery.min.js" ></script>
+<script src="/static/web/js/ab.js"></script>
+<!--[if lt IE 9]>
+<script src="/static/web/js/modernizr.js"></script>
+<![endif]-->
+</head>
+<body>
+<header class="header-navigation" id="header">
+  <nav>
+    <div class="logo"><a href="http://www.yangqq.com">{{ user.username }}的个人博客</a></div>
+    <h2 id="mnavh"><span class="navicon"></span></h2>
+    <ul id="starlist">
+      <li><a href="/web/index/">网站首页</a></li>
+      <li><a href="/backweb/article/">管理文章</a></li>
+      <li><a href="/web/about/">关于我</a></li>
+      <li><a href="/web/list/">博客文章</a></li>
+    </ul>
+  </nav>
+</header>
+<article>
+  <div class="abox">
+    <h2>博主简介</h2>
+    {% for u in user %}
+    <div class="biji-content" id="content">
+      <p>{{ u.user_introduce | safe }}</p>
+    </div>
+    <div class="navlist">
+      {% endfor %}
+      <ul>
+        <li class="navcurrent"><a href="#top1">基本信息</a> </li>
+        <li> <a href="#top2" >工作技能</a> </li>
+      </ul>
+    </div>
+    <div class="navtab">
+      <div class="navitem" style="display: block;" name = "top1">
+        <div class="content">
+          {% for u in user %}
+          <p>网名：{{ u.username }}</p>
+          <p>职业：{{ u.professional }} </p>
+          <p>邮箱：{{ u.email}}</p>
+
+          <p>个人头像：</p>
+          <p><img style="width:800px;" src="/article/{{ u.head_portrait }}"></p>
+          <br>
+          <p>个人微信：</p>
+          <p><img src="/article/{{ u.wx }}"></p>
+
+        </div>
+      </div>
+      <div class="navitem" name = "top2">
+        <div class="content">
+          <p class="ab_t">工作技能：</p>
+          <p>{{ u.job_skills | safe }}</p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+<footer>
+  <p><a href="/web/index/" target="_blank">小叶子的个人博客</a> </p>
+</footer>
+<a href="#" class="cd-top">Top</a>
+</body>
+</html>

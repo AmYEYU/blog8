@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>首页_小叶子个人博客 - 一个90后女程序员的个人博客网站</title>
+<meta name="keywords" content="个人博客,小叶子个人博客,个人博客模板,小叶子" />
+<meta name="description" content="小叶子个人博客，是一个90后女程序员的个人博客网站，发一些琐碎文章。" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="/static/web/css/base.css" rel="stylesheet">
+<link href="/static/web/css/index.css" rel="stylesheet">
+<link href="/static/web/css/m.css" rel="stylesheet">
+<script src="/static/web/js/jquery.min.js" ></script>
+<script src="/static/web/js/jquery.easyfader.min.js"></script>
+<script src="/static/web/js/hc-sticky.js"></script>
+<script src="/static/web/js/comm.js"></script>
+<script src="/static/web/js/scrollReveal.js"></script>
+<!--[if lt IE 9]>
+<script src="/static/web/js/modernizr.js"></script>
+<![endif]-->
+</head>
+<body>
+<header class="header-navigation" id="header">
+  <nav>
+    {% for u in user %}
+    <div class="logo"><a href="http://www.yangqq.com">{{ u.username }}的个人博客</a></div>
+    {% endfor %}
+    <h2 id="mnavh"><span class="navicon"></span></h2>
+    <ul id="starlist">
+      <li><a href="/web/index/">网站首页</a></li>
+      <li><a href="/backweb/article/">管理文章</a></li>
+      <li><a href="/web/about/">关于我</a></li>
+      <li><a href="/web/list/">博客文章</a></li>
+    </ul>
+    <div class="searchbox">
+
+    </div>
+  </nav>
+</header>
+<article> 
+  <!--banner begin-->
+  <!--滚动文章-->
+  <div class="banner">
+    <div id="banner" class="fader">
+      {% for a in article %}
+      <li class="slide" ><a href="/web/info/{{ a.id }}" target="_blank"><img src="/article/{{ a.icon }}"><span class="imginfo">{{ a.title }}</span></a></li>
+      {% endfor %}
+
+      <div class="fader_controls">
+        <div class="page prev" data-target="prev">&lsaquo;</div>
+        <div class="page next" data-target="next">&rsaquo;</div>
+        <ul class="pager_list">
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!--banner end-->
+  <!--右上固定照片-->
+  <div class="toppic">
+    <li> <i><img src="/static/web/images/2.jpg"></i>
+      </li>
+    <li> <i><img src="/static/web/images/9.jpg"></i>
+    </li>
+  </div>
+  <main>
+  <div class="blogtab">
+    <!--文章列表-->
+    {% for a in article %}
+    <div class="blogs" data-scroll-reveal="enter bottom over 1s" >
+      <h3 class="blogtitle"><a href="/web/info/{{ a.id }}" target="_blank">{{ a.title }}</a></h3>
+      <span class="bigpic"><a href="/web/info/{{ a.id }}" title=""><img src="/article/{{ a.icon }}" alt=""></a></span>
+      <p class="blogtext">{{ a.describe }}</p>
+      <div class="bloginfo">
+        <ul>
+          <li class="author"><a href="/web/about/">小叶子</a></li>
+          <li class="lmname"><a href="/web/info/{{ a.id }}">{{ a.column }}</a></li>
+          <li class="timer">{{ a.time }}</li>
+        </ul>
+      </div>
+    </div>
+    {% endfor %}
+</div>
+  </main>
+  <aside class="r_box" >
+      <div class="about_me">
+        <h2>博主简介</h2>
+        <ul>
+          <a href="/web/about/">
+          {% for u in user %}
+          <i><img src="/article/{{ u.head_portrait }}"></i>
+          <p><b>{{ u.username }}</b></p>
+            <br>
+            <p>
+            {{ u.user_introduce }}
+            </p>
+
+          </a>
+        </ul>
+
+      </div>
+      <div class="guanzhu">
+        <h2>这是我的微信 嘻嘻～</h2>
+        <ul>
+          <img src="/static/web/images/wx.jpg">
+        </ul>
+      </div>
+  </aside>
+</article>
+<footer>
+  <p><a href="/web/index/" target="_blank">{{ u.username }}的个人博客</a></p>
+</footer>
+{% endfor %}
+<a href="#" class="cd-top">Top</a>
+</body>
+</html>
